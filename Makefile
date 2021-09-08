@@ -4,9 +4,11 @@ ifeq ($(ARCH),)
 ARCH=$(shell go env GOARCH)
 endif
 
-BUILD_META=-build$(shell date +%Y%m%d)
+BUILD_META=-multiarch-build$(shell date +%Y%m%d)
 ORG ?= rancher
-TAG ?= dev$(BUILD_META)
+TAG ?= v0.0.1$(BUILD_META)
+UBI_IMAGE ?= centos:7
+GOLANG_VERSION ?= v1.16.6b7-multiarch
 
 ifneq ($(DRONE_TAG),)
 TAG := $(DRONE_TAG)
@@ -19,8 +21,9 @@ endif
 .PHONY: all
 all:
 	docker build \
-		--pull \
 		--build-arg TAG=$(TAG) \
+                --build-arg GO_IMAGE=$(ORG)/hardened-build-base:$(GOLANG_VERSION) \
+                --build-arg UBI_IMAGE=$(UBI_IMAGE) \
 		-t $(ORG)/rke2-cloud-provider:$(TAG)-$(ARCH) \
 	.
 

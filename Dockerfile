@@ -1,5 +1,5 @@
-ARG UBI_IMAGE=registry.access.redhat.com/ubi7/ubi-minimal:latest
-ARG GO_IMAGE=rancher/hardened-build-base:v1.16.4b7
+ARG UBI_IMAGE
+ARG GO_IMAGE
 
 FROM ${GO_IMAGE} as builder
 ARG TAG=""
@@ -22,7 +22,7 @@ RUN install -s bin/* /usr/local/bin
 RUN ln -s /usr/local/bin/rke2-cloud-provider /usr/local/bin/cloud-controller-manager
 
 FROM ${UBI_IMAGE} as ubi
-RUN microdnf update -y && \ 
+RUN yum update -y && \ 
     rm -rf /var/cache/yum
 
 COPY --from=builder /usr/local/bin /usr/local/bin
