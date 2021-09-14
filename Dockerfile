@@ -22,7 +22,4 @@ RUN install -s bin/* /usr/local/bin
 RUN ln -s /usr/local/bin/rke2-cloud-provider /usr/local/bin/cloud-controller-manager
 
 FROM ${UBI_IMAGE} as ubi
-RUN yum update -y && \ 
-    rm -rf /var/cache/yum
-
 COPY --from=builder /usr/local/bin /usr/local/bin
