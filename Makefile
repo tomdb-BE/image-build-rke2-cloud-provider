@@ -8,7 +8,7 @@ BUILD_META ?= -multiarch-build$(shell date +%Y%m%d)
 ORG ?= rancher
 TAG ?= v0.0.3$(BUILD_META)
 UBI_IMAGE ?= registry.access.redhat.com/ubi8/ubi-minimal:latest
-GOLANG_VERSION ?= v1.17.5b7-multiarch
+GOLANG_VERSION ?= v1.17.6b7-multiarch
 
 ifneq ($(DRONE_TAG),)
 TAG := $(DRONE_TAG)
