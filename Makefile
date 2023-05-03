@@ -22,6 +22,7 @@ all:
 		--pull \
 		--build-arg TAG=$(TAG) \
 		--build-arg ARCH=$(ARCH) \
+		--build-arg ORG=$(ORG) \
 		-t $(ORG)/rke2-cloud-provider:$(TAG)-$(ARCH) \
 	.
 

@@ -1,5 +1,6 @@
-ARG BCI_IMAGE=registry.suse.com/bci/bci-base:latest
-ARG GO_IMAGE=rancher/hardened-build-base:v1.19.7b1
+ARG ORG=rancher
+ARG BCI_IMAGE=registry.suse.com/bci/bci-base:15.3.17.20.12
+ARG GO_IMAGE=${ORG}/hardened-build-base:v1.20.3b1
 
 FROM ${GO_IMAGE} as builder
 ARG TAG=""
